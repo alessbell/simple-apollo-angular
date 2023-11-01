@@ -1,20 +1,4 @@
-// import { products } from "../products";
-
-// @Component({
-//   selector: 'app-product-list',
-//   templateUrl: './product-list.component.html',
-// })
-// export class ProductListComponent {
-//   products = [...products];
-
-//   share() {
-//     window.alert('The product has been shared!');
-//   }
-// }
-
-////
-
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Apollo, gql } from "apollo-angular";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -49,17 +33,10 @@ export class ProductListComponent implements OnInit {
   constructor(private apollo: Apollo) {}
 
   ngOnInit() {
-    console.log("here");
     this.products = this.apollo
       .watchQuery<Query>({
         query: DEFERRED_QUERY,
       })
-      .valueChanges.pipe(
-        map((result) => {
-          console.log("here 2");
-          return result.data.allProducts;
-        })
-      );
-    console.log(this.products);
+      .valueChanges.pipe(map((result) => result.data.allProducts));
   }
 }
