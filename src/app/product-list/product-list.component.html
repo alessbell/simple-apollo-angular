@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let product of (products | async)">
+    {{product.id}} - {{ product.sku}}
+    <!-- {{ post.title }} by {{ post.author.firstName }} -->
+    <!-- {{ post.author.lastName }} ({{ post.votes }} votes) -->
+    <!-- <app-upvoter [postId]="post.id"></app-upvoter> -->
+  </li>
+</ul>
